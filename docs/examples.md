@@ -2,23 +2,15 @@
 
 Click the links below and learn from community-built example projects
 
-### [Rust Sample Node](https://github.com/lightningdevkit/ldk-sample)
+## [Bitcoin Core payjoin-cli extension](https://github.com/payjoin/rust-payjoin/tree/master/payjoin-cli)
 
-The sample serves as a complete reference for constructing a Lightning node with
-the LDK. This is a good starting point if you want a self-guided tour!
+The sample serves as a complete reference for sending and receiving Payjoin with
+the PDK. This is a good starting point if you want a self-guided tour. `payjoin-cli` uses the blocking version of the `reqwest` crate for networking, so it's as simple as it gets.
 
-### [Java Sample Node](https://github.com/getlipa/ldk-sample-java)
+## [LND nolooking payjoin extension](https://github.com/chaincase-app/nolooking)
 
-This repository contains a sample implementation of LDK as the result of following the steps described in [Building a Node with LDK in Java](/tutorials/build_a_node_in_java/).
+Send and receive payjoin from LND. Batch lightning channel open transactions in payjoins with a web UI. Nolooking makes use of `async` and `tokio`. If your project uses an asynchronous runtime, this is the reference for you.
 
-### [Kotlin Sample Node](https://github.com/BlueWallet/HelloLightning)
+## [BitMask Beta](https://beta.bitmask.app)
 
-Kotlin based CLI lightning network server based on LDK. Provides HTTP-RPC interface.
-
-### [Rust node with sample Lightning Signer integration](https://gitlab.com/lightning-signer/lnrod/)
-
-A Rust Lightning node implementation based on the LDK and the Lightning Signer projects. Aims to be production ready at some point.
-
-### [Rust node with sample Tor integration](https://github.com/TonyGiorgio/ldk-sample-tor)
-
-A Rust Lightning node sample implementation based on LDK with an embedded Tor daemon.
+Payjoin in a bitcoin webapp. Written in Rust and compiled to WASM. BitMask supports bitcoin, lightning, and RGB protocol assets. It uses the asynchronus `reqwest` client.

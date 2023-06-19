@@ -1,25 +1,25 @@
 :root {
-  --docs-primary-light: #0F31F7;
-  --docs-primary-dark: #76F3CD;
-  --docs-dark: #000628;
+  --docs-primary-light: #C71585;
+  --docs-primary-dark: #F75394;
+  --docs-dark: #0F1010;
 
   --docs-note-text: var(--docs-black) !important;
-  --docs-note-bg: #F5F7FF !important;
-  --docs-code-bg: #E6EAFE;
-  --docs-pre-bg: #020A36;
+  --docs-note-bg: #F6D8E7 !important;
+  --docs-code-bg: #F0D1E1;
+  --docs-pre-bg: #17051B;
 }
 
 :root[data-theme="dark"] {
-  --docs-code-bg: #06463C;
-  --docs-pre-bg: #002547;
+  --docs-code-bg: #401D29;
+  --docs-pre-bg: #0A070F;
   --docs-note-text: var(--docs-white) !important;
   --docs-note-bg: var(--docs-pre-bg) !important;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --docs-code-bg: #06463C;
-    --docs-pre-bg: #002547;
+    --docs-code-bg: #401D29;
+    --docs-pre-bg: #0A070F;
     --docs-note-text: var(--docs-white) !important;
     --docs-note-bg: var(--docs-pre-bg) !important;
   }

@@ -1,42 +1,34 @@
-# Use Cases for LDK
+# Use Cases for PDK
 
-The standard Lightning use case is running a standalone node on one's laptop.
-Here's some other use cases that LDK supports.
+Payjoin uses interaction to improve blockspace efficiency and preserve privacy.
+Here's some other use cases that PDK supports.
 
-## Mobile Devices
+## Bitcoin Core Extension
 
-Mobile devices with Lightning have unique requirements often not well served by
-today's Lightning ecosystem. Not only do they need to operate with minimal
-footprint, they also have intermittent data access and cannot shutdown safely.
-More importantly, many existing wallets already have business logic to handle
-blockchain data, keys, and storage, and do not wish to duplicate much of that
-logic to integrate Lightning (at worst fetching the blockchain twice). LDK
-offers a flexible API to allow users to integrate Lightning with their own keys,
-blockchain data, and storage. To allow full flexibility in footprint, the API
-supports routing data being fetched via the Lightning P2P protocol, an external
-service, or routes can be calculated off-device. It also provides cross-platform
-compatibility for free, allowing synchronization of Lightning state across
-devices and, as long as there is protection from simultaneous updates, users to
-access their wallet on any device. See the [Overview](../../overview/architecture) page for more
-details on the interfaces LDK provides for integration.
+Payjoin CLI uses Bitcoin Core's `bitcoind` JSON-RPC to send and receive payjoin.
+This enables payjoin functionality for existing bitcoin deployments.
+[Test send and receive Payjoin](../test-send-receive-payjoin.md) documents how this works.
 
-## HSMs (Hardware Security Modules)
+## Commercial Bitcoin Exchange
 
-LDK Supports various HSM configurations. In conjunction with the [Lightning
-Signer project](https://github.com/lightning-signer/) , an external HSM can be
-used to verify most protocol details about states before signing, ensuring host
-compromise cannot steal funds by broadcasting revoked states. For nodes seeking
-a higher level of assurance, the entire LDK channel state machine can
-be run on an offline device, communicating with the outside world via a proxy
-host which maintains TCP connections with peers. Such a configuration ensures
-all details of the Lightning protocol are enforced without consideration of host
-compromise.
+Bitcoin businesses can use payjoin to do more than just send and receive simple
+payments. Payjoin can be used to combine payment forwarding and payment batching
+as transaction cut-through to reduce what would be at least two transactions into
+one, saving considerable blockspace ([Bitcoin Optech Newsletter #251/Advanced payjoin applications](https://bitcoinops.org/en/newsletters/2023/05/17/)).
+Doing so can save a business fees, increase the speed of service, and serve more
+customers when compared to traditional batching techniques.
 
-## Production Lightning Nodes
+## Lightning Nodes
 
-Many large Bitcoin transactors have large amounts of custom-built infrastructure
-for interacting with the Bitcoin blockchain. Such tight integration with
-business logic may be difficult with existing Lightning implementations focusing
-on standalone operation. For such transactors, LDK offers the possibility of
-integrating a library in their native runtime, storing and handling Lightning
-data and events in the same way they do blockchain events.
+Lightning nodes using payjoin can batch channel funding transactions from the
+first transaction they receive. The [nolooking](https://github.com/chaincase-app/nolooking)
+project demonstrates this capability with an LND Extension and web interface.
+Check out these [video demos](https://twitter.com/utxoclub/status/1592460852690419712)
+to see it in action. Interaction allows the receiver to prepare just-in-time
+channel funding outputs from a queue when a payjoin is incoming.
+Find it on the [Umbrel App Store](https://apps.umbrel.com/app/nolooking)
+
+## Web Apps
+
+The PDK can be compiled to WASM to run in web browsers. [BitMask Beta](https://beta.bitmask.app/)
+uses PDK to send payjoins whenever bitcoin URIs support them.
