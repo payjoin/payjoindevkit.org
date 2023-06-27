@@ -7,7 +7,7 @@ Here's some other use cases that PDK supports.
 
 Payjoin CLI uses Bitcoin Core's `bitcoind` JSON-RPC to send and receive payjoin.
 This enables payjoin functionality for existing bitcoin deployments.
-[Test send and receive Payjoin](../test-send-receive-payjoin.md) documents how this works.
+[Send and Receive Test Payjoins](../send-receive-test-payjoins.md) documents how this works.
 
 ## Commercial Bitcoin Exchange
 

@@ -6,10 +6,6 @@ You can support Payjoin without needing to worry about getting all of the Payjoi
 
 The [payjoin-cli sample](https://github.com/payjoin/rust-payjoin/tree/master/payjoin-cli) showcases how PDK can be customised. It fetches blockchain data and transacts on-chain via Bitcoin Core RPC/REST. The individual components of the sample are composable. For example, the sample writes counterparty state to the local filesystem, but this component could be replaced with one that writes this data to the cloud or to multiple locations. You can pick the off-the-shelf parts you want and replace the rest.
 
-## To jump into integrating PDK with your application
-
-* [Click here for Rust](../tutorials/use_payjoin_in_rust.md)
-
 ## References
 
 ### [Rust Documentation](https://docs.rs/payjoin)
