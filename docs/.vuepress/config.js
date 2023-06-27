@@ -4,7 +4,7 @@ const themeConfig = require('@spiralbtc/vuepress-devkit-theme/config')
 const title = 'Payjoin Dev Kit Documentation'
 const baseUrl = 'https://payjoindevkit.org'
 const githubUrl = 'https://github.com/payjoin'
-const discordUrl = 'https://discord.gg/xaYE3pDQpm'
+const discordUrl = 'https://discord.gg/6rJD9R684h'
 const themeColor = '#ffffff'
 
 const docsSidebar = [
@@ -105,6 +105,11 @@ module.exports = {
         link: '/blog/'
       },
       {
+        text: 'Discord',
+        link: discordUrl,
+        rel: 'noopener noreferrer'
+      },
+      {
         text: 'GitHub',
         link: githubUrl,
         rel: 'noopener noreferrer'
@@ -138,6 +143,11 @@ module.exports = {
         {
           title: 'Community',
           children: [
+            {
+              text: 'Discord',
+              link: discordUrl,
+              rel: 'noopener noreferrer'
+            },
             {
               text: 'GitHub',
               link: githubUrl,

@@ -1,88 +1,68 @@
 ---
 title: "PDK: A Payjoin SDK"
-description: "Learn how PDK makes it easy to support Payjoin and the direction it will develop in our newly launched blog."
-date: "2023-06-20"
+description: "Learn how PDK makes using Payjoin easy and the direction it will develop in our new blog."
+date: "2023-06-27"
 authors:
   - Dan Gould
 tags:
   - Bitcoin
   - PDK
----  
-I am jazzed to release our first blog post. I cover the history of PDK, why you should consider using it to add Payjoin to your stack, and some of our priorities moving forward. We’ll be updating this blog with development updates, new features and the details of new releases.
+---
+
+<br/>
+<br/>
+<br/>
+
+PDK is here to make Payjoin a drop in upgrade for every software touching Bitcoin. I cover the project's history, why you should consider using it to add Payjoin to your stack, and some of the project's priorities moving forward. The PDK team will be updating this new blog with development updates, feature forecasts and the details of releases.
   
 ## What is PDK?
 
-<!-- If you’re reading this, you probably know something about the Lightning Development Kit, the easy-to-use open-source tool that simplifies how developers add highly secure, privacy-preserving Lightning functionality to bitcoin applications. What you might not know is how it got started.  -->
+PDK began as a Rust Payjoin side project library developed by Martin Habovštiak, [@Kixunil](https://github.com/kixunil) in [2021](https://github.com/payjoin/rust-payjoin/commit/d70c447af622e2b9db34b833fe22a80ff3b2d223). Up until then, Payjoin had been cast as a merchant / client privacy tool, but Martin saw payjoin as something more. He showcased Payjoin as a generic interactive transaction coordinator early on. One of Martin's Rust Payjoin applications, [loptos](https://github.com/Kixunil/loptos), receives Payjoin to open batches of lightning channels from an external Payjoin sender, reducing fees and eliminating one whole transaction from typical channel funding flow. I now view Payjoin as the simplest way to deploy Greg Maxwell's 2013 [transaction cut-through](https://bitcointalk.org/index.php?topic=281848.0) idea to scale bitcoin and preserve privacy with through fee saving incentives.
 
-PDK began as a side project developed by Martin Habovštiak [@Kixunil](https://github.com/kixunil) in [2021](https://github.com/payjoin/rust-payjoin/commit/d70c447af622e2b9db34b833fe22a80ff3b2d223). One of Martin's early rust payjoin applications, [loptos](https://github.com/Kixunil/loptos), receives Payjoin  to open batches of lightning channels from an external Payjoin sender, reducing fees and eliminating a transaction from typical channel funding flow. Payjoin had been cast as a merchant / client privacy tool, but Martin saw payjoin as an interactive transaction coordinator early on. I now view Payjoin as the simplest way to deploy Greg Maxwell's 2013 transaction cut-through idea to scale bitcoin.
+A couple months after Martin started, Alex Gladstein announced Human Rights Foundation [support](https://twitter.com/gladstein/status/1437796214376845315) of my work to make Payjoin mobile friendly. In the Payjoin deep dive that followed, I began to view Payjoin as a self-contained privacy system that can benefit any bitcoin settlement, much like Martin's loptos. But it seemed no Payjoin library with complete send and receive features existed. At best, reference software were tightly coupled to inner workings of the wallets they were attached to.  I found Martin's Rust Payjoin to be a worthy foundation on which to build such a library. Martin reviewed my early contributions to the library more thoroughly than clinical trials for new medications. Meanwhile, the success of [BDK](https://bitcoindevkit.org/) and [LDK](https://lightningdevkit.org) addressing mobile environments inspired me. A Payjoin Dev Kit could be flexible and safe enough to run everywhere.
 
-A couple months later, Alex Gladstein announced Human Rights Foundation [support](https://twitter.com/gladstein/status/1437796214376845315) of my work to make Payjoin mobile friendly in iOS. In my Payjoin deep dive, I realized that while mobile payjoin was possible, the dependencies it needed (like Tor 👀) would not suit many Bitcoin apps. On the path to a new version capable of universal support, I found Martin's rust payjoin to be a worthy foundation on which to build. The success of [BDK](https://bitcoindevkit.org/) and [LDK](https://lightningdevkit.org) inspired me. A Rust Payjoin dev kit could be flexible and safe enough to run everywhere.
+## Why not add Payjoin to BDK?
 
-In the fall of 2022, Evan Lin, Nick Farrow, Armin Sabouri and I upgraded loptos with a web interface, documentation, and demos into into [nolooking](https://github.com/chaincase-app/nolooking). While it only batched channels at first, nolooking now leverages PDK to make canonical payjoin transactions. The Payjoin transaction structure can preserve Bitcoin network privacy for all, too.
+You might think Payjoin is just bitcoin, so it belongs in BDK. When you take at the `bdk` crate you see that it's a wallet abstraction. That is meant to manage key material and synchronize apps with the network. Payjoin in contrast is an interactive transaction building protocol with some networking parameters. The two compliment each other well, and while the day where PDK's `payjoin` crate compiles as part of `bdk` may well come soon, in order to provide well engineered and reviewed components, PDK lives in its own repository for specialized scrutiny so each effort can focus on their individual strengths.
 
-The demand from the launch of nolooking inspired me to reach out to more wallet projects which may have interest in using Payjoin. In particular, Michael from Boltz Exchange and Hugo Nguyen from Nunchuk both expressed early interest, but their projects use languages that are not rust. Matthias from Trident Wallet and Thunderbiscuit on the BDK team have volunteered their time exporing binding options. WizardSardine's Liana can make use of it too.
+BDK is focused shipping a stable v1.0. Any software based on it before then must change to accomodate it. Like LDK, a key quality of Payjoin Dev Kit is doing no IO. BDK *does* do IO.
 
-Conor Okus saw potential for payjoin and suggested a website to explain how it works and how to progress. That idea became [payjoin.org](https://payjoin.org) and newfound interest in its potential integrations. He pointed me to engage with the Bitcoin Design Community, where Stephen DeLorme and Christoph Ono helped me to issue a design challenge which [Yashraj](https://twitter.com/Yashraj__) accepted, went on to develop [The Payjoin Experience Case Study](https://bitcoin.design/guide/case-studies/payjoin/) in collaboration with Mogashni Naidoo, and present his findings at the Canadian Bitcoin Conference.
+PDK is focused on making Payjoin integrations easy, reliable, and making using it foolproof.
 
-Hunter Beast took a risk on an early alpha of PDK, adding it to the Bitcoin, Lightning, and RGB web wallet BitMask. Steve Meyers of BDK mentors Will Owens as a Summer of Bitcoin intern to support payjoin in the BDK-CLI tool. Francis Pouliot engages closely with PDK to fulfil his [vow](https://twitter.com/francispouliot_/status/1138131827258986499) that Bull Bitcoin will be "the first Bitcoin company in the world to integrate pay-to-endpoint Bitcoin deposits and withdrawals." Now that the sturdy base of PDK exists, Payjoin stands a chance to evolve into every Bitcoin product.
-
-A phalanx of even more unnamed supporters continue to raise this open-source groundwork with funding, infrastructure, integrations, bindings, design, protcol development, advice, documentation and more. Thank you all for your continued support. Follow along on [Twitter](), join the conversation on [Discord](), and get involved. If you are a developer, read on to understand why PDK exists and how you can make use of it today.
-
-## What advantages does PDK offer developers?
-
-<!-- Before committing to LDK, we spoke with over 50 wallet developers to learn what challenges they faced. We learned that developing Lightning apps was a universally bad experience, especially in mobile environments, and that a small team of experienced engineers could take up to two years to build a basic Lightning application. So… not great. 
-
-LDK is a flexible Lightning implementation that focuses on running the Lightning node on a mobile phone in a non-custodial manner, which has significant privacy and sovereignty benefits. While this presents some technical challenges, non-custodial mobile apps are where LDK specializes, whether someone is building a wallet from scratch or integrating LDK into one that already exists.
-
-Before LDK, if your team wanted to add Lightning functionality to a mobile app, you most likely had to modify and customize an existing implementation like LND to make it suitable for mobile devices. Core Lightning is also hard to run on iPhones. Both of these implementations are out-of-the-box node solutions that provide solid RPC and HTTP interfaces, but are targeted for server environments or simply aren’t suited to mobile. 
-
-Furthermore, if you want to turn your on-chain wallet into a unified wallet experience or source chain data from a third-party server using the Electrum protocol for resource-constrained devices, it’s complex, time-consuming, and a huge engineering undertaking.
-
-Maintaining an LN implementation that you can trust with real money is challenging, and different needs exist for routing nodes and mobile nodes. Maintenance costs also increase over time due to ageing codebases, interactions with other layers, and new use cases with different performance and security trade-offs. We see this with [Breez](https://github.com/breez/breezmobile) forking [LND](https://github.com/breez/lnd) to make it suitable for mobile and ACINQ doing something similar with [Phoenix](https://github.com/ACINQ/phoenix) wallet and [lightning-kmp](https://github.com/ACINQ/lightning-kmp).  
-
-We created LDK in multiple languages with an API-first approach designed to run at the application layer, like Rust’s [Persist](https://docs.rs/lightning/latest/lightning/chain/chainmonitor/trait.Persist.html) trait. Persist defines behaviour for persisting channel states but lets you specify whether you write this data to disk or another backup mechanism, such as the cloud. You don’t need to write an LN implementation from scratch or modify an existing one to use LN functionality. Just call our APIs from your app.
-
-Finally (for this section), LDK’s flexibility enables several different architectures without sacrificing security. Its lightweight design can be optimized to run on embedded devices or HSMs (hardware security modules) and it doesn’t make system calls, so it can run in almost any OS environment. For example, you can opt to run some Lightning logic, such as signing transactions and updating channel states on an HSM that has specific [spending policies](https://gitlab.com/lightning-signer/docs/-/blob/master/README.md) and manages private keys. Then you connect it to a server with its own TCP/IP stack using a serial communication method such as USB. 
-
-Check out this [presentation](https://www.youtube.com/watch?v=9-81tobFSKg) at btc++ by [Jeff Czyz](https://twitter.com/jkczyz) and [Arik Sosman](https://twitter.com/arikaleph) to learn more about LDK [use cases](https://lightningdevkit.org/introduction/use_cases/). -->
+As fortune would have it the partially signed Bitcoin transactions that power PDK live in a shared `rust-bitcoin` dependency that BDK makes extensive use of, making the two fit siblings. Keeping PDK separate from BDK while the two mature allow them to develop at speed while still maintaining broad compatibility and sharing design philosophy.
 
 ## Who uses PDK?
 
-PDK supports hot wallet applications, mobile and web environments, [Lightning Payjoin](https://chaincase.app/words/lightning-payjoin) channel opening, interesting miniscript optimizations, enterprise batching, and more. The following are a few examples you can try in the wild.
+A few collaborators make use of PDK's compatibility to Payjoin from diverse computing environments. Some even use BDK.
 
-## [Bitcoin Core payjoin-cli extension](https://github.com/payjoin/rust-payjoin/tree/master/payjoin-cli)
+[Bitcoin Core payjoin-cli extension](https://github.com/payjoin/rust-payjoin/tree/master/payjoin-cli) serves as a complete reference sample for sending and receiving Payjoin with the PDK. This is a good starting point for a self-guided tour of the kit to make your first Payjoins from the command line.
 
-The sample serves as a complete reference for sending and receiving Payjoin with
-the PDK. This is a good starting point if you want a self-guided tour. `payjoin-cli` uses the blocking version of the `reqwest` crate for networking, so it's as simple as it gets.
+Hunter Beast took a gamble on an early PDK alpha, adding it to [BitMask Beta](https://beta.bitmask.app), the BDK-based Bitcoin, Lightning, and RGB web wallet compiled to WASM. Steve Meyers mentors Will Owens as a Summer of Bitcoin intern to support Payjoin in the BDK-CLI tool. Francis Pouliot engages closely with PDK to fulfil his [vow](https://twitter.com/francispouliot_/status/1138131827258986499) that Bull Bitcoin will be "the first Bitcoin company in the world to integrate pay-to-endpoint Bitcoin deposits and withdrawals." Now that a sturdy base exists for PDK, Payjoin stands a chance to evolve into every Bitcoin product.
 
-## [LND nolooking payjoin extension](https://github.com/chaincase-app/nolooking)
+For example, in the fall of 2022, Evan Lin, Nick Farrow, Armin Sabouri and I transformed loptos's Lightning Payjoin with a neat UI, documentation, and demos into [nolooking](https://github.com/chaincase-app/nolooking) and shipped it to the Umbrel app store. While it only batched channels in a non-canonical fake Payjoin hack at first, nolooking now leverages PDK to make canonical Payjoin transactions that do preserve privacy as a side effect of transaction cut-through batching.
 
-Send and receive payjoin from LND. Batch lightning channel open transactions in payjoins with a web UI. Nolooking makes use of `async` and `tokio`. If your project uses an asynchronous runtime, this is the reference for you.
+After seeing how complex such an app could be, Conor Okus of Spiral suggested to channel the potential of Payjoin into a website to explain how it works and recruit wider support. That idea became [payjoin.org](https://payjoin.org) and brought new interest in many potential integrations. He pointed me to engage with the Bitcoin Design Community, where Stephen DeLorme and Christoph Ono helped me to issue a design challenge. [Yashraj](https://twitter.com/Yashraj__) accepted, went on to develop [The Payjoin Experience Case Study](https://bitcoin.design/guide/case-studies/payjoin/) in collaboration with Mogashni Naidoo, and presented his findings at the Canadian Bitcoin Conference.
 
-## [BitMask Beta](https://beta.bitmask.app)
+Today, Matthias from Trident Wallet and Thunderbiscuit from BDK both help to launch foreign language bindings to catalyze [Payjoin adoption](https://en.bitcoin.it/wiki/PayJoin_adoption) beyond Rust. Floppy Disk Guy explores potential alternative coordination mechanisms, like Nostr. [BOB Space](https://www.bobspaces.net/) curates an environment for PDK development to thrive. A phalanx of many more unnamed supporters continue to raise this open-source groundwork with funding, infrastructure, integrations, bindings, design, protcol development, advice, documentation, thought provoking questions and more. Thank you all for your contributions to aim this distributed effort.
 
-Payjoin in a bitcoin webapp. Written in Rust and compiled to WASM. BitMask supports bitcoin, lightning, and RGB protocol assets. It uses the asynchronus `reqwest` client.
-
-We’re also talking to dozens of open source projects, developers, and businesses, some of whom we expect to adopt PDK soon.
-
-## What are PDK’s engineering priorities?
+## What are PDK’s development priorities?
 
 ### A Robust Interface
 
-Before PDK, a Payjoin implementations existed that were tightly coupled to their wallet logic. We want to build a sane inteface with comprehensive error handling. Being a privacy tool, getting the interface right and removing places where users can make errors is a critical goal. At the time of writing, the Payjoin `send` feature is beta quality while the `receiver` is in late alpha.
+Before PDK, Payjoin implementations were all tightly coupled to their wallet logic. PDK aims to be a thoughtful, beautiful inteface with comprehensive error handling. In order to deliver the promise of reliable security and privacy, PDK must remove any chance for misuse downstream. PDK should also include best practices to deliver delightful experiences.
 
 ### Serverless, Asynchronous Payjoin
 
-Payjoin v1 wallets can't receive unless the app is open, online, and hosting a public HTTP endpoint. We’re developing solutions in conjunction with the Bitcoin developer community at large that will let offline wallets receive Payjoin without hosting a public server. I have a [pull request](https://github.com/payjoin/rust-payjoin/pull/21) open that proposes a protocol to fix this exact problem. It includes his original post to the bitcoin-dev mailing list which is a [detailed technical](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2023-January/021364.html) read on this issue.
+Version 1 wallets can't receive Payjoin unless they are running, online, and hosting a public HTTP endpoint. We’re developing solutions to these requirements in conjunction with the Bitcoin developer community at large. We must enable wallets with unstable connections or delays to account for hardware signing Payjoin receiving without hosting a public server too. I have a [pull request](https://github.com/payjoin/rust-payjoin/pull/21) open that proposes a protocol to fix this exact problem. It includes the original bitcoin-dev [mailing list post](https://lists.linuxfoundation.org/pipermail/bitcoin-dev/2023-January/021364.html) on the Serverless Payjoin issue.
 
 ### Language Bindings
 
-We’re making existing language integrations feel more native. We currently support Rust, but bindings are an active area of development. Bindings are in the proof of concept stage and [the approach](https://deploy-preview-144--awesome-golick-685c88.netlify.app/blog/bindings-scope/) is being defined in collaboration with BDK and LDK. We prioritize fixing bugs for early adopters. Express your support for C/C++, C#, Flutter/Dart, Kotlin/JVM, Python, Swift, WASM to get the ball rolling.
+For now we only support Rust, but bindings are an active area of development. Bindings are in the proof of concept stage and [the approach](https://bitcoindevkit.org/blog/bindings-scope/) is being defined in collaboration with BDK and LDK. We prioritize fixing bugs for early adopters. Express your desire for C/C++, C#, Flutter/Dart, Kotlin/JVM, Python, Swift, and WASM in your project to get the ball rolling in the direction of your preferred language.
 
 ### Design Guidance
 
-The payjoin protocol was designed to fit in the universal bitcoin URI and QR standard. Most of the user decisions regarding transaction construction, coin selection, and fees can be automated. We want to make it as easy as possible for developers to go from the decision that they'll support payjoin to a production deployment, and that includes front end components and communication with users
+The Payjoin protocol was designed to requested bitcoin using the universal bitcoin URI and QR standard, [BIP 21](https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki). Most of a user's preferences regarding transaction construction, coin selection, and fees can be automated thanks in part to this standard. We want to make it as easy as possible for developers to go from the decision that they'll support payjoin to a production deployment, and that includes front end components and stories to make the experience seamless for users.
 
 ## Wrapping up
 
-[Know someone supporting Payjoin or related application?](https://github.com/orgs/lightningdevkit/discussions/1554) Point them in [@bitgould’s](https://twitter.com/bitgould) direction. If you’re already using PDK and have questions, hop into our [Discord](https://discord.gg/xaYE3pDQpm) or checkout GitHub [Discussions](https://github.com/orgs/payjoin/discussions)
+You should have a good idea about what PDK is about and where we're headed. Know someone supporting Payjoin or related application? Point them in my direction. I'm [@bitgould](https://twitter.com/bitgould). Follow the project on [Twitter](https://twitter.com/payjoindevkit). Hop into our [Discord](https://discord.gg/6rJD9R684h) or checkout GitHub [Discussions](https://github.com/orgs/payjoin/discussions) to get involved. Payjoin is scaling Bitcoin and reliable privacy is coming for the ride.
