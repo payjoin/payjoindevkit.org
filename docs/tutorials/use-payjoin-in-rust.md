@@ -1,15 +1,15 @@
-# Building a Node with LDK in Rust
+# Use Payjoin with PDK in Rust
 
 ## Introduction
 
-This document covers everything you need to make a node using LDK in Rust.
+Let's walk through sending payjoin using a custom PDK and BDK integration.
 
 ::: tip Note
-For an integrated example of an LDK node in Rust, see the [Sample Node](https://github.com/lightningdevkit/ldk-sample)
+For an simple example of PDK Payjoin in Rust, see the [payjoin-cli](https://github.com/payjoin/rust-payjoin/tree/master/payjoin-cli)
 :::
 
 * [Setup](#setup) covers everything you need to do to set up LDK on startup.
-* [Running LDK](#running-ldk) covers everything you need to do while LDK is running to keep it operational.
+* [Running PDK](#running-pdk) covers everything you need to do while LDK is running to keep it operational.
 
 Note that LDK does not assume that safe shutdown is available, so there is no
 shutdown checklist.
@@ -547,7 +547,7 @@ let peer_manager = PeerManager::new(
 
 **References:** [`PeerManager` docs](https://docs.rs/lightning/*/lightning/ln/peer_handler/struct.PeerManager.html), [`RoutingMessageHandler` docs](https://docs.rs/lightning/*/lightning/ln/msgs/trait.RoutingMessageHandler.html)
 
-## Running LDK
+## Running PDK
 
 This section assumes you've already run all the steps in [Setup](#setup).
 

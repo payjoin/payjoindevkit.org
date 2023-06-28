@@ -1,19 +1,19 @@
 {
-  "name": "lightningdevkit.org",
-  "version": "1.0.0",
-  "description": "Lightning Dev Kit Documentation",
+  "name": "payjoindevkit.org",
+  "version": "0.0.1",
+  "description": "Payjoin Dev Kit Documentation",
   "author": "Lightning Dev Kit",
   "license": "MIT",
-  "bugs": "https://github.com/lightningdevkit/lightningdevkit.org/issues",
-  "homepage": "https://lightningdevkit.org",
+  "bugs": "https://github.com/payjoin/payjoindevkit.org/issues",
+  "homepage": "https://payjoindevkit.org",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lightningdevkit/lightningdevkit.org.git"
+    "url": "git+https://github.com/payjoindevkit/payjoindevkit.org.git"
   },
   "keywords": [
     "bitcoin",
-    "lightning",
-    "ldk",
+    "payjoin",
+    "pdk",
     "documentation"
   ],
   "config": {
