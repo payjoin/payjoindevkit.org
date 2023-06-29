@@ -23,7 +23,7 @@ A couple months after Martin started, Alex Gladstein announced Human Rights Foun
 
 ## Why not add Payjoin to BDK?
 
-You might think Payjoin is just bitcoin, so it belongs in BDK. When you take at the `bdk` crate you see that it's a wallet abstraction. That is meant to manage key material and synchronize apps with the network. Payjoin in contrast is an interactive transaction building protocol with some networking parameters. The two compliment each other well, and while the day where PDK's `payjoin` crate compiles as part of `bdk` may well come soon, in order to provide well engineered and reviewed components, PDK lives in its own repository for specialized scrutiny so each effort can focus on their individual strengths.
+You might think Payjoin is just bitcoin, so it belongs in BDK. When you take a look at the `bdk` crate you see that it's a wallet abstraction. That is meant to manage key material and synchronize apps with the network. Payjoin in contrast is an interactive transaction building protocol with some networking parameters. The two compliment each other well, and while the day where PDK's `payjoin` crate compiles as part of `bdk` may well come soon, in order to provide well engineered and reviewed components, PDK lives in its own repository for specialized scrutiny so each effort can focus on their individual strengths.
 
 BDK is focused shipping a stable v1.0. Any software based on it before then must change to accomodate it. Like LDK, a key quality of Payjoin Dev Kit is doing no IO. BDK *does* do IO.
 
