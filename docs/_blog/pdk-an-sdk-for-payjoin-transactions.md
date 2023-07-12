@@ -17,7 +17,7 @@ PDK is here to make Payjoin a drop in upgrade for all software touching Bitcoin.
   
 ## What is PDK?
 
-PDK began as a Rust Payjoin side project library developed by Martin Habovštiak, [@Kixunil](https://github.com/kixunil) in [2021](https://github.com/payjoin/rust-payjoin/commit/d70c447af622e2b9db34b833fe22a80ff3b2d223). Up until then, Payjoin had been cast as a merchant / client privacy tool, but Martin saw payjoin as something more. He showcased Payjoin as a generic interactive transaction coordinator early on. One of Martin's Rust Payjoin applications, [loptos](https://github.com/Kixunil/loptos), receives Payjoin to open batches of lightning channels from an external Payjoin sender, reducing fees and eliminating one whole transaction from typical channel funding flow. I now view Payjoin as the simplest way to deploy Greg Maxwell's 2013 [transaction cut-through](https://bitcointalk.org/index.php?topic=281848.0) idea to scale bitcoin and preserve privacy with through fee saving incentives.
+PDK began as a Rust Payjoin side project library developed by Martin Habovštiak, [@Kixunil](https://github.com/kixunil) in [2021](https://github.com/payjoin/rust-payjoin/commit/d70c447af622e2b9db34b833fe22a80ff3b2d223). Up until then, Payjoin had been cast as a merchant / client privacy tool, but Martin saw payjoin as something more. He showcased Payjoin as a generic interactive transaction coordinator early on. One of Martin's Rust Payjoin applications, [loptos](https://github.com/Kixunil/loptos), receives Payjoin to open batches of lightning channels from an external Payjoin sender, reducing fees and eliminating one whole transaction from typical channel funding flow. I now view Payjoin as the simplest way to deploy Greg Maxwell's 2013 [transaction cut-through](https://bitcointalk.org/index.php?topic=281848.0) idea to scale bitcoin and preserve privacy through fee saving incentives.
 
 A couple months after Martin started, Alex Gladstein announced Human Rights Foundation [support](https://twitter.com/gladstein/status/1437796214376845315) of my work to make Payjoin mobile friendly. In the Payjoin deep dive that followed, I began to view Payjoin as a self-contained privacy system that can benefit any bitcoin settlement, much like Martin's loptos. But it seemed no Payjoin library with complete send and receive features existed. At best, reference software were tightly coupled to inner workings of the wallets they were attached to.  I found Martin's Rust Payjoin to be a worthy foundation on which to build such a library. Martin reviewed my early contributions to the library more thoroughly than clinical trials for new medications. Meanwhile, the success of [BDK](https://bitcoindevkit.org/) and [LDK](https://lightningdevkit.org) addressing mobile environments inspired me. A Payjoin Dev Kit could be flexible and safe enough to run everywhere.
 
@@ -49,7 +49,7 @@ Today, Matthias from Trident Wallet and Thunderbiscuit from BDK both help to lau
 
 ### A Robust Interface
 
-Before PDK, Payjoin implementations were all tightly coupled to their wallet logic. PDK aims to be a thoughtful, beautiful inteface with comprehensive error handling. In order to deliver the promise of reliable security and privacy, PDK must remove any chance for misuse downstream. PDK should also include best practices to deliver delightful experiences.
+Before PDK, Payjoin implementations were all tightly coupled to their wallet logic. PDK aims to be a thoughtful, beautiful interface with comprehensive error handling. In order to deliver the promise of reliable security and privacy, PDK must remove any chance for misuse downstream. PDK should also include best practices to deliver delightful experiences.
 
 ### Serverless, Asynchronous Payjoin
 
@@ -61,7 +61,7 @@ For now we only support Rust, but bindings are an active area of development. Bi
 
 ### Design Guidance
 
-The Payjoin protocol was designed to requested bitcoin using the universal bitcoin URI and QR standard, [BIP 21](https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki). Most of a user's preferences regarding transaction construction, coin selection, and fees can be automated thanks in part to this standard. We want to make it as easy as possible for developers to go from the decision that they'll support payjoin to a production deployment, and that includes front end components and stories to make the experience seamless for users.
+The Payjoin protocol was designed to request a bitcoin payment using the universal bitcoin URI and QR standard, [BIP 21](https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki). Most of a user's preferences regarding transaction construction, coin selection, and fees can be automated thanks in part to this standard. We want to make it as easy as possible for developers to go from the decision that they'll support payjoin to a production deployment, and that includes front end components and stories to make the experience seamless for users.
 
 ## Wrapping up
 
