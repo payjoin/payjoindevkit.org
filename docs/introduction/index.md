@@ -14,7 +14,7 @@ These provide the most searchable and comprehensive documentation on PDK.
 If you're using Java and want more information on any method/struct/etc., searching
 the Rust docs for the Rust version of that struct/method is your best bet.
 
-### [Rust Payjoin CLI Implementation](https://github.com/payjoin/rust-payjoin/tree/master/payjoin-cli)
+### [Rust `payjoin-cli` Implementation](https://crates.io/crates/payjoin-cli)
 
-The sample serves as a complete reference for sending and reciving Payjoin with
+The cli app serves as a complete reference for sending and reciving Payjoin with
 the PDK and Bitcoin Core from the command line. Check it out to take a self-guided tour.
