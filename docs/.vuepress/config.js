@@ -39,6 +39,7 @@ const tutorialSidebar = [
     collapsable: false,
     children: [
       '/tutorials/getting-started',
+      '/tutorials/send-payjoin-with-pdk',
     ],
   }
 ]
