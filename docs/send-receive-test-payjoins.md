@@ -101,7 +101,7 @@ danger_accept_invalid_certs = true
 After configuration, assuming funded `send` and `receive` wallets in Bitcoin Core, running the following command **with your previous receiver genrated bitcoin URI** will send a payjoin from `send` to `receive`.
 
 ```console
-cargo run -- send $RECEIVE_URI
+cargo run -- send $RECEIVE_URI --fee-rate 1
 ```
 
 Make sure you replace `$RECEIVE_URI` with the bitcoin URI pasted from the receiver console.
