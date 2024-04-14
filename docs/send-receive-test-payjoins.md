@@ -41,7 +41,7 @@ Receiving a payjoin involves hosting an HTTP that the sender can reach. First, c
 
 ```console
 cd receive
-touch cargo.toml
+touch config.toml
 ```
 
 Edit the configuration file according to [your operating system's bitcoin data directory](https://en.bitcoin.it/wiki/Data_directory):
@@ -49,9 +49,9 @@ Edit the configuration file according to [your operating system's bitcoin data d
 This sample is valid for a default datadir on MacOS:
 
 ```toml
-# receive/cargo.toml
+# receive/config.toml
 bitcoind_cookie = "~/Library/Application Support/Bitcoin/regtest/.cookie"
-bitcoind_rpchost = "http://localhost:18443/wallets/receive"
+bitcoind_rpchost = "http://localhost:18443/wallet/receive"
 ```
 
 Now, run the following command:
@@ -92,16 +92,16 @@ touch config.toml
 Edit the configuration file according to [your operating system's bitcoin data directory](https://en.bitcoin.it/wiki/Data_directory):
 
 ```toml
-# send/cargo.toml
+# send/config.toml
 bitcoind_cookie = "~/Library/Application Support/Bitcoin/regtest/.cookie"
-bitcoind_rpchost = "http://localhost:18443/wallets/send"
+bitcoind_rpchost = "http://localhost:18443/wallet/send"
 danger_accept_invalid_certs = true
 ```
 
 After configuration, assuming funded `send` and `receive` wallets in Bitcoin Core, running the following command **with your previous receiver genrated bitcoin URI** will send a payjoin from `send` to `receive`.
 
 ```console
-cargo run -- send $RECEIVE_URI
+cargo run -- send $RECEIVE_URI --fee-rate 1
 ```
 
 Make sure you replace `$RECEIVE_URI` with the bitcoin URI pasted from the receiver console.
