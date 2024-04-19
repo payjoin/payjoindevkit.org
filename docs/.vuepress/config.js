@@ -175,7 +175,7 @@ module.exports = {
           ]
         }
       ],
-      copyright: 'Copyright © 2023 PDK Developers'
+      copyright: 'Copyright © 2024 PDK Developers'
     }
   }
 }
