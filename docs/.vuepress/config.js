@@ -58,25 +58,25 @@ const blogSidebar = [
 
 module.exports = {
   title,
-  description: 'LDK is a flexible lightning implementation with supporting batteries (or modules).',
+  description: 'PDK is a Payjoin implementation with supporting modules.',
   theme: resolve(__dirname, '../../node_modules/@spiralbtc/vuepress-devkit-theme'),
   ...themeConfig({
     baseUrl,
     title,
     themeColor,
-    tags: ['Bitcoin', 'Lightning', 'LDK', 'Lightning Dev Kit', 'Documentation']
+    tags: ['Bitcoin', 'Payjoin', 'PDK', 'Payjoin Dev Kit', 'Documentation']
   }),
   themeConfig: {
     domain: baseUrl,
     logo: '/img/logo.svg',
     displayAllHeaders: false,
-    repo: 'lightningdevkit/lightningdevkit.org',
+    repo: 'payjoin/payjoindevkit.org',
     docsDir: 'docs',
     docsBranch: 'main',
     editLinks: true,
     sidebarDepth: 0,
     algolia: {
-      indexName: 'lightningdevkit',
+      indexName: 'payjoindevkit',
       appId: 'BH4D9OD16A',
       apiKey: '17ed8a4e16a1cb7d94da4e96f2ff817f',
       // See https://www.algolia.com/doc/api-reference/api-parameters/
@@ -175,7 +175,7 @@ module.exports = {
           ]
         }
       ],
-      copyright: 'Copyright © 2023 PDK Developers'
+      copyright: 'Copyright © 2024 PDK Developers'
     }
   }
 }
