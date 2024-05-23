@@ -5,7 +5,7 @@ date: "2024-05-22"
 authors:
   - spacebear
 tags:
-  - Payjoin
+  - PDK
   - Infrastructure
 ---
 
