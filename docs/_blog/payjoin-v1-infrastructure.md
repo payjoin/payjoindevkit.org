@@ -1,5 +1,5 @@
 ---
-title: "Notes on payjoin v1 infrastructure"
+title: "Notes on Payjoin V1 Infrastructure"
 description: "A guide on setting up a payjoin receiver on signet"
 date: "2024-05-22"
 authors:
@@ -9,9 +9,7 @@ tags:
   - Infrastructure
 ---
 
-<br/>
-
-Payjoin v1 coordinates payjoins over a public server endpoint secured by either TLS or Tor hidden service hosted by the receiver. This requires setting up either a HTTPS proxy or a Tor proxy when testing payjoins across different implementations.
+[Payjoin V1](https://github.com/bitcoin/bips/blob/master/bip-0078.mediawiki) coordinates transactions between two parties who communicate over a public server endpoint secured by either TLS or Tor hidden service hosted by the receiver. This requires setting up either an HTTPS proxy or a Tor proxy when testing payjoins across different implementations.
 
 ## Setting up a HTTPS payjoin server with nginx
 
@@ -23,7 +21,7 @@ First, ensure nginx is installed on the server or [install nginx](https://nginx.
 
 Then, we'll edit `/etc/nginx/nginx.conf` to proxy traffic to the payjoin server (more on that later) by adding the following block:
 
-```
+```conf
 # nginx.conf
     server {
         server_name pj.example.com; # Replace this with your domain name
@@ -47,11 +45,13 @@ Next, we'll need to obtain a valid TLS certificate from a Certificate Authority.
 
 Once certbot is installed, we can obtain a certificate and automatically update the nginx configuration:
 
-```sudo certbot -d <server_name from the nginx.conf above> --nginx```
+```sh
+sudo certbot -d <server_name from the nginx.conf above> --nginx
+```
 
 `/etc/nginx/nginx.conf` should now look something like this:
 
-```
+```conf
 # nginx.conf
     server {
         server_name pj.example.com;
@@ -75,8 +75,8 @@ Once certbot is installed, we can obtain a certificate and automatically update 
 
 Verify the installation with `curl`:
 
-```
-[ec2-user@ip-172-31-94-70 ~]$ curl -v https://<server_name>
+```sh
+$ curl -v https://<server_name>
 * Host pj.example.com:443 was resolved.
 * IPv6: (none)
 * IPv4: 54.156.128.153
@@ -102,7 +102,6 @@ Verify the installation with `curl`:
 *  subjectAltName: host "pj.example.com" matched cert's "pj.example.com"
 *  issuer: C=US; O=Let's Encrypt; CN=R3
 *  SSL certificate verify ok.
-
 ...
 
 <html>
@@ -126,7 +125,7 @@ echo "0 0,12 * * * root /opt/certbot/bin/python -c 'import random; import time; 
 
 Because we're testing between wallets on different machines, regtest won't work (at least not trivially). We need a "real" Bitcoin network like signet. [Install Bitcoin Core](https://bitcoincore.org/) and edit `~/.bitcoin/bitcoin.conf`:
 
-```
+```conf
 # bitcoin.conf
 chain=signet
 server=1
@@ -140,27 +139,30 @@ rpcpassword=payjoin
 
 Finally, we'll install (or build from source) [payjoin-cli](https://github.com/payjoin/rust-payjoin/tree/master/payjoin-cli#install-payjoin-cli) and make a `config.toml` in the directory we plan on running payjoin-cli from:
 
-```
+```toml
 # config.toml
 bitcoind_rpcuser = "payjoin"
 bitcoind_rpcpass = "payjoin"
 bitcoind_rpchost = "http://localhost:38332/wallet/receiver"
+pj_endpoint = "https://pj.example.com"
 ```
+
+This guide used [payjoin-cli v0.0.5-alpha](https://crates.io/crates/payjoin-cli/0.0.5-alpha). Configuration may change with newer versions.
 
 We can now run the receiver:
 
-```
+```sh
 $ payjoin-cli receive 10000
 Listening at 0.0.0.0:3000. Configured to accept payjoin at BIP 21 Payjoin Uri:
-bitcoin:tb1q9e5qgztf6w4zz2m3ts3w2zp3psdqpgmtdkf7y0?amount=0.0001&pj=https://localhost:3000/&pjos=0
+bitcoin:tb1q9e5qgztf6w4zz2m3ts3w2zp3psdqpgmtdkf7y0?amount=0.0001&pj=https://pj.example.com&pjos=0
 ```
 
-### Send payjoin!
+### Send payjoin
 
-Send a payjoin to the BIP21 Uri generated above, taking care to replace `localhost:3000` in the `pj=` parameter with the domain name where your server is running. This should work from any wallet that implements payjoin support, from any machine. 
+Send a payjoin to the BIP21 Uri generated above. This should work from any wallet that implements payjoin support, from any machine.
 
 E.g. sending from joinmarket:
 
-```
-(jmvenv) $ sendpayment.py -m 0 wallet.jmdat "bitcoin:tb1q9e5qgztf6w4zz2m3ts3w2zp3psdqpgmtdkf7y0?amount=0.0001&pj=https://pj.example.com/&pjos=0"
+```sh
+(jmvenv) $ sendpayment.py -m 0 wallet.jmdat "bitcoin:tb1q9e5qgztf6w4zz2m3ts3w2zp3psdqpgmtdkf7y0?amount=0.0001&pj=https://pj.example.com&pjos=0"
 ```
