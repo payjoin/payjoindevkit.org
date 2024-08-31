@@ -25,7 +25,7 @@ features:
 <div class="feature">
 <h3>PSBT Purity</h3>
 
-Standard Partially Signed Bitcoin Transaction support and an internet connection is all you need to Payjoin. No fancy transaction parsing or pigeon-holed wallet architechture required.
+Standard Partially Signed Bitcoin Transaction support and an internet connection is all you need to Payjoin. No fancy transaction parsing or pigeon-holed wallet architecture required.
 
 </div>
 <div class="feature">
