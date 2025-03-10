@@ -201,7 +201,7 @@ module.exports = {
           ]
         }
       ],
-      copyright: 'Copyright © 2024 PDK Developers'
+      copyright: `Copyright © ${(new Date()).getUTCFullYear()} PDK Developers`,
     }
   }
 }
