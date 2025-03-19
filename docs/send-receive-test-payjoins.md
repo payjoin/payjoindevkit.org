@@ -30,7 +30,7 @@ Start by cloning the payjoin-cli from GitHub and changing into the new directory
 
 ```console
 git clone https://github.com/payjoin/rust-payjoin.git
-cd payjoin-cli
+cd rust-payjoin/payjoin-cli
 mkdir receive
 mkdir send
 ```
