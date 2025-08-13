@@ -9,8 +9,6 @@ tags:
   - PDK
 ---
 
-<br/>
-
 PDK is here to make Payjoin a drop in upgrade for all software touching Bitcoin. I cover the project's history, why you should consider it to add Payjoin to your stack, and some of the project's priorities moving forward. The PDK team will be updating this new blog with development updates, feature forecasts and the details of releases.
   
 ## What is PDK?

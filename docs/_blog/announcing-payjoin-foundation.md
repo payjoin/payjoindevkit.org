@@ -9,8 +9,6 @@ tags:
   - Foundation
 ---
 
-<br/>
-
 Commercial attempts to solve Bitcoin’s privacy have faced tremendous barriers. Short-term profit motives have delivered partial and temporary solutions, but transacting privately on Bitcoin remains a challenge.
 
 We formed Payjoin Foundation to pursue the long-term mission of addressing Bitcoin’s privacy problems. Our non-profit exists to develop open-source protocols that align economic incentives with network-wide privacy protection. We believe that users have a right to choose whether or not to reveal their on-chain activity, and that such protocols can even offer a more convenient and delightful experience than those that don't respect this choice.
