@@ -182,7 +182,7 @@ module.exports = {
             },
             {
               text: 'PDK Roadmap',
-              link: "https://github.com/orgs/payjoin/projects/1",
+              link: "https://github.com/orgs/payjoin/projects/1/views/7",
               rel: 'noopener noreferrer'
             },
           ]
