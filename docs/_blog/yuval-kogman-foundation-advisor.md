@@ -8,6 +8,7 @@ tags:
   - Announcement
   - Foundation
   - Advisor
+image: "/card.png"  # Optional: specify a custom image for this post
 ---
 
 <br/>

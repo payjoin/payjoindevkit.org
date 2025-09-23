@@ -91,6 +91,52 @@ module.exports = {
         ]
       },
     ],
+    // Updated SEO plugin configuration
+    [
+      'vuepress-plugin-seo',
+      {
+        siteTitle: (_, $site) => $site.title,
+        title: $page => $page.title,
+        description: $page => $page.frontmatter.description,
+        author: (_, $site) => 'Payjoin Dev Kit',
+        tags: $page => $page.frontmatter.tags,
+        twitterCard: _ => 'summary_large_image',
+        type: $page => {
+          if ($page.regularPath.includes('/blog/') || $page.regularPath.includes('/_blog/')) {
+            return 'article'
+          }
+          return 'website'
+        },
+        url: (_, $site, path) => 'https://payjoindevkit.org' + path,
+        image: ($page, $site) => {
+          // If page has custom image in frontmatter
+          if ($page.frontmatter.image) {
+            // Handle both absolute URLs and relative paths
+            if ($page.frontmatter.image.startsWith('http')) {
+              return $page.frontmatter.image
+            }
+            return 'https://payjoindevkit.org' + $page.frontmatter.image
+          }
+          // Default fallback image
+          return 'https://payjoindevkit.org/card.png'
+        },
+        publishedAt: $page => $page.frontmatter.date ? new Date($page.frontmatter.date) : null,
+        modifiedAt: $page => $page.lastUpdated ? new Date($page.lastUpdated) : null,
+      }
+    ]
+  ],
+  // Add head meta tags as fallback
+  head: [
+    // Default Open Graph tags
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:site_name', content: 'Payjoin Dev Kit Documentation' }],
+    ['meta', { property: 'og:image', content: 'https://payjoindevkit.org/card.png' }],
+    ['meta', { property: 'og:image:width', content: '1200' }],
+    ['meta', { property: 'og:image:height', content: '630' }],
+    ['meta', { property: 'og:image:type', content: 'image/png' }],
+    // Twitter Card tags
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:image', content: 'https://payjoindevkit.org/card.png' }],
   ],
   themeConfig: {
     domain: baseUrl,
