@@ -24,7 +24,7 @@ Building on this idea, [Bustapay (BIP 79)](https://github.com/bitcoin/bips/blob/
 
 Building on Bustapay, [Payjoin V1 (BIP 78)](https://payjoin.org/docs/how-it-works/payjoin-v1-bip-78) refined sender-receiver transaction collaboration into an even more practical and extensible protocol. By standardizing wallet communication over an HTTP protocol, the standard Bitcoin URI request format, and leveraging [Partially Signed Bitcoin Transactions (PSBT)]((https://en.bitcoin.it/wiki/BIP_0174)), BIP 78 made adopting [the Payjoin experience](https://bitcoin.design/guide/case-studies/payjoin/) interoperable across different wallets and hardware devices.
 
-However, Payjoin V1 has limitations. It requires both sender and receiver to be online simultaneously (synchronous communication), and for the receiver needs to host a server to facilitate coordination. Despite these challenges, real-world implementations of Payjoin in payment processing software demonstrate its viability, laying the groundwork for improved interactive transaction batching.
+However, Payjoin V1 has limitations. It requires both sender and receiver to be online simultaneously (synchronous communication), and for the receiver to host a server to facilitate coordination. Despite these challenges, real-world implementations of Payjoin in payment processing software demonstrate its viability, laying the groundwork for improved interactive transaction batching.
 
 ## Payjoin V2 (BIP 77): Asynchronous Communication
 
