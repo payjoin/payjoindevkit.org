@@ -67,6 +67,7 @@ module.exports = {
     tags: ['Bitcoin', 'Payjoin', 'PDK', 'Payjoin Dev Kit', 'Documentation']
   }),
   plugins: [
+    "seo",
     [
       '@vuepress/blog',
       {
