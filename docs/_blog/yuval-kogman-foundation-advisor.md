@@ -10,8 +10,6 @@ tags:
   - Advisor
 ---
 
-<br/>
-
 Spiral Bitcoin Wizard and longtime Bitcoin privacy developer Yuval Kogman joins
 Payjoin Foundation as the first Advisory Board member. He draws on more than two
 decades of programming experience. Few others can boast Yuval's dedication to
