@@ -8,7 +8,6 @@ tags:
   - privacy
   - integrations
 ---
-<h2></h2>
 
 The following is a conclusive address of concerns around UTXO probing attacks on
 Payjoin, clarification of why current mitigations are effective, and definitive
