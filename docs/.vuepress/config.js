@@ -66,32 +66,6 @@ module.exports = {
     themeColor,
     tags: ['Bitcoin', 'Payjoin', 'PDK', 'Payjoin Dev Kit', 'Documentation']
   }),
-  plugins: [
-    [
-      '@vuepress/blog',
-      {
-        directories: [
-          {
-            id: 'blog',
-            dirname: '_blog',
-            path: '/blog/',
-          },
-        ],
-        frontmatters: [
-          {
-            id: 'tag',
-            keys: ['tag', 'tags'],
-            path: '/blog/tags/',
-          },
-          {
-            id: 'author',
-            keys: ['author', 'authors'],
-            path: '/blog/author/',
-          }
-        ]
-      },
-    ],
-  ],
   themeConfig: {
     domain: baseUrl,
     logo: '/img/logo.svg',
