@@ -198,6 +198,10 @@ module.exports = {
               text: 'Blog',
               link: '/blog/'
             },
+            {
+              text: 'Supporters',
+              link: '/supporters'
+            }
           ]
         }
       ],
