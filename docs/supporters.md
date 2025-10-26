@@ -9,7 +9,7 @@ lastUpdated: false
 # Supporters
 
 The Payjoin Dev Kit project is proudly supported by a number of organizations. If you'd like to become a supporter
-please reach out at: [hello@payjoin.org](mailto:hello@bitcoindevkit.org)
+please reach out at: [hello@payjoin.org](mailto:hello@payjoin.org)
 
 ## 2025
 
